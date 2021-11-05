@@ -1,9 +1,42 @@
+:root{
+    --btn-padding-size: 1%;
+}
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
+.orderInfo{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+table, td, th {
+    border: 1px solid black;
+    background-color: #373630;
+    color: #ebf2f0;
+    text-align: center;
+}
+
+#confirm{
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    margin: 0;
+    padding: var(--btn-padding-size) 0;
+}
+#confirm:hover{
+    background-color: #A8D0E6;
+    cursor: pointer;
+}
+
 
 .showcase {
     position: absolute;

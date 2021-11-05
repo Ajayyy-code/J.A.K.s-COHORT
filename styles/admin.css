@@ -1,0 +1,9 @@
+.admin-overview{
+    display: flex;
+}
+.current-orders{
+    border: 1px solid;
+}
+.current-bearers{
+    border: 1px solid;
+}

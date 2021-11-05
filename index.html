@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="styles\index.css">
 </head>
 <body>
+    <!-- CUSTOMER PAGE -->
     <section class="showcase">
         <header>
             <h1>J.A.K.s-COHORT's Management System</h1> 
@@ -13,6 +14,7 @@
         <video src="media\videos\genericVid.mp4" muted loop autoplay></video>
         
         <div class="overlay"></div>
+
             <div class="text">
                 <h3> Track Your Order </h3>
                 <form class="inputForm" action="" method="post" onclick="return false">
@@ -20,15 +22,73 @@
                     <input type="submit" name="Submit" value="Search" id="sBtn">
                 </form>
             </form>
-            </div>
-    </section>
 
-<!-- <script>
-    window.setInterval('refresh()', 2000); 	
-    function refresh() {
-        window.location.reload();
-    }
-</script> -->
+            <div class="orderInfo">
+                <h4>Order Information</h4>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Contact Information</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Delivery Method</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Delivery Address</td>
+                            <td>
+                                <table>
+                                    <tr>
+                                        <td>First Name</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Last Name</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Company</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Address</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Apartment suite, etc. (optional)</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>City</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Country/region</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Phone</td>
+                                        <td></td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Subtotal</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="bearer-info">
+
+                </div>
+                <div class="confirm-order">
+                    <button id="confirm">Order Recieved</button>
+                </div>
+            </div>
+        </div>
+    </section>
 </body>
 
 </html>
