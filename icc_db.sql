@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 12, 2021 at 05:53 PM
+-- Generation Time: Nov 12, 2021 at 06:06 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -51,12 +51,17 @@ INSERT INTO `bearer` (`name`, `ID`, `assignedOrders`, `location`) VALUES
 
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE IF NOT EXISTS `customer` (
-  `name` varchar(40) NOT NULL,
   `ID` int(11) NOT NULL,
   `orderID` varchar(20) NOT NULL,
+  `fname` varchar(20) NOT NULL,
+  `lname` varchar(20) NOT NULL,
+  `company` varchar(20) NOT NULL,
+  `address` text NOT NULL,
+  `optionalAddressInfo` varchar(20) NOT NULL,
+  `city` varchar(20) NOT NULL,
+  `country` varchar(20) NOT NULL,
   `contactNumber` varchar(30) NOT NULL,
   `contactEmail` varchar(40) NOT NULL,
-  `address` text NOT NULL,
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -64,9 +69,9 @@ CREATE TABLE IF NOT EXISTS `customer` (
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`name`, `ID`, `orderID`, `contactNumber`, `contactEmail`, `address`) VALUES
-('TestName', 0, 'T3$t1ng420', '18764206959', '', '100 Road Street\r\nDistrict 12\r\nTownhouse #20'),
-('TestName2', 1, 'A2I349JHJSA', '18763422384', '', '101 Road Street\r\nDistrict 13\r\nTownhouse #21');
+INSERT INTO `customer` (`ID`, `orderID`, `fname`, `lname`, `company`, `address`, `optionalAddressInfo`, `city`, `country`, `contactNumber`, `contactEmail`) VALUES
+(0, 'T3$t1ng420', 'TestName', '', '', '100 Road Street\r\nDistrict 12\r\nTownhouse #20', '', '', '', '18764206959', ''),
+(1, 'A2I349JHJSA', 'TestName2', '', '', '101 Road Street\r\nDistrict 13\r\nTownhouse #21', '', '', '', '18763422384', '');
 
 -- --------------------------------------------------------
 
