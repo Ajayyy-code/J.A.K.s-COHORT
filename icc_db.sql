@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 12, 2021 at 06:06 PM
+-- Generation Time: Nov 12, 2021 at 06:13 PM
 -- Server version: 5.7.31
 -- PHP Version: 7.3.21
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `bearer` (
 --
 
 INSERT INTO `bearer` (`name`, `ID`, `assignedOrders`, `location`) VALUES
-('BigBearer1', 0, 'OrderIDNumber1 OrderIDNumber2', 'Generic District');
+('BigBearer1', 1, 'OrderIDNumber1 OrderIDNumber2', 'Generic District');
 
 -- --------------------------------------------------------
 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
 
 INSERT INTO `customer` (`ID`, `orderID`, `fname`, `lname`, `company`, `address`, `optionalAddressInfo`, `city`, `country`, `contactNumber`, `contactEmail`) VALUES
 (0, 'T3$t1ng420', 'TestName', '', '', '100 Road Street\r\nDistrict 12\r\nTownhouse #20', '', '', '', '18764206959', ''),
-(1, 'A2I349JHJSA', 'TestName2', '', '', '101 Road Street\r\nDistrict 13\r\nTownhouse #21', '', '', '', '18763422384', '');
+(1, 'OrderIDNumber1', 'TestName2', '', '', '101 Road Street\r\nDistrict 13\r\nTownhouse #21', '', '', '', '18763422384', '');
 
 -- --------------------------------------------------------
 
@@ -94,7 +94,7 @@ CREATE TABLE IF NOT EXISTS `order` (
 --
 
 INSERT INTO `order` (`orderID`, `assignedCustomer`, `assignedBearer`, `subtotal`, `orderStatus`) VALUES
-('OrderIDTest3893483982', '0', 1, 69420.4, 'Pending');
+('OrderIDNumber1', '0', 1, 69420.4, 'Pending');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
