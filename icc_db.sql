@@ -10,6 +10,9 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+DROP DATABASE IF EXISTS icc;
+CREATE DATABASE icc;
+USE icc;
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -30,11 +33,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `bearer`;
 CREATE TABLE IF NOT EXISTS `bearer` (
   `name` varchar(40) NOT NULL,
-  `ID` int(10) NOT NULL,
+  `ID` int(10) NOT NULL AUTO_INCREMENT,
   `assignedOrders` varchar(200) NOT NULL COMMENT 'ID of the Orders with a space to separate',
   `location` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `bearer`
@@ -63,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `contactNumber` varchar(30) NOT NULL,
   `contactEmail` varchar(40) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customer`
@@ -87,16 +90,22 @@ CREATE TABLE IF NOT EXISTS `order` (
   `subtotal` float NOT NULL,
   `orderStatus` varchar(20) NOT NULL,
   PRIMARY KEY (`orderID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 --
 -- Dumping data for table `order`
 --
 
 INSERT INTO `order` (`orderID`, `assignedCustomer`, `assignedBearer`, `subtotal`, `orderStatus`) VALUES
 ('OrderIDNumber1', '0', 1, 69420.4, 'Pending');
+INSERT INTO `order` (`orderID`, `assignedCustomer`, `assignedBearer`, `subtotal`, `orderStatus`) VALUES
+('OrderIDNumber2', '1', 2, 42069.4, 'Active');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+create table person_log(date datetime2, sid int);
+
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE IF NOT EXISTS `log` (
