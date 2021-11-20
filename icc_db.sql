@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `bearer` (
   `assignedOrders` varchar(200) NOT NULL COMMENT 'ID of the Orders with a space to separate',
   `location` text NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bearer`
@@ -66,7 +66,7 @@ CREATE TABLE IF NOT EXISTS `customer` (
   `contactNumber` varchar(30) NOT NULL,
   `contactEmail` varchar(40) NOT NULL,
   PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `order` (
   `subtotal` float NOT NULL,
   `orderStatus` varchar(20) NOT NULL,
   PRIMARY KEY (`orderID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 --
 -- Dumping data for table `order`
 --
@@ -101,11 +101,9 @@ INSERT INTO `order` (`orderID`, `assignedCustomer`, `assignedBearer`, `subtotal`
 ('OrderIDNumber2', '1', 2, 42069.4, 'Active');
 COMMIT;
 
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
-create table person_log(date datetime2, sid int);
-
-DROP TABLE IF EXISTS `log`;
-CREATE TABLE IF NOT EXISTS `log` (
