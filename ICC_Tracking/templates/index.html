@@ -1,8 +1,9 @@
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title>JAK Cohert</title>
-    <link rel="stylesheet" href="styles\index.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'ICC_Tracking/styles/index.css' %}">
 </head>
 <body>
     <!-- CUSTOMER PAGE -->
@@ -11,7 +12,7 @@
             <h1>J.A.K.s-COHORT's Management System</h1>
         </header>
 
-        <video src="media\videos\genericVid.mp4" muted loop autoplay></video>
+        <video src="{% static 'ICC_Tracking/media/videos/genericVid.mp4' %}" muted loop autoplay></video>
 
         <div class="overlay"></div>
 

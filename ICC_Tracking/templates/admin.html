@@ -1,8 +1,10 @@
+{% load static %}
 <html>
 <head>
     <meta charset="UTF-8">
     <title>JAK Cohert</title>
-    <link rel="stylesheet" href="styles\admin.css">
+    <link rel="stylesheet" href="{% static 'ICC_Tracking/styles/admin.css' %}">
+    <script src="app.js" type="text/javascript"></script>
 </head>
 <body>
     <!-- STAFF & OWNER PAGE -->
@@ -49,9 +51,12 @@
 
         <section class="admin-tools">
             <div class="checkin-bearer">
+            <form method="post">
+                
                 <input id="bearer-input" type="text" name="bearer-input" placeholder="Enter Bearer name" />
 				<div id="controls">
-					<button id="set-bearer">Set Bearer</button>
+					<button name="set-bearer" type = "submit">Set Bearer</button>
+                    <button name ="delete-bearer" type = "submit">Delete Bearer</button>
 				</div>
             </div>
         </section>
