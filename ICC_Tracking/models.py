@@ -14,18 +14,13 @@ class Customer(models.Model):
     contactNumber = models.CharField(max_length=50, blank=True)
     contactEmail = models.EmailField(max_length=50, blank=True)
 
-class Order(models.Model):
-
     STATUS_CHOICES = (
-       (1, "Preparing"),
-       (2, "Active"),
-        (3, "Delivered"),
+       (1, "Active"),
+        (2, "Delivered"),
     )
-
-    orderID = models.CharField(max_length=50, primary_key=True)
-    assignedCustomer = models.IntegerField()
-    assignedBearer = models.IntegerField(blank=True)
-    subtotal = models.FloatField(blank=True)
+    orderID = models.CharField(max_length=50)
+    assignedBearer = models.IntegerField(blank=True, null=True)
+    subtotal = models.FloatField(blank=True, null=True)
     orderStatus = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
 class Bearer(models.Model):
