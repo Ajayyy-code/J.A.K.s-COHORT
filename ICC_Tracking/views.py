@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Create your views here.
 # request -> response
@@ -14,9 +15,11 @@ def index(request):
     return render(request, 'index.html')
 
 #Inventory Page
+@staff_member_required()
 def inventory(request):
     return render(request, 'inventory.html')
 
 #Admin Page
+@staff_member_required()
 def admin(request):
     return render(request, 'admin.html')
