@@ -82,13 +82,28 @@ class Bearer(models.Model):
         f.seek(0)
         queue = f.read().split(" ")
         print(queue)
+        f.close()
 
         if self.assignedOrders=="" or self.assignedOrders is None:
             print(f'No Orders Assigned to {self}')
+            indx = -1
+            for customer in queue:
+                indx += 1
+                try:
+                    customerObj = Customer.objects.get(orderID=customer)
+                    print(customerObj)
+                    if customerObj is not None:
+                        self.assignedOrders += customerObj.orderID+" "
+                        queue.pop(indx)
+                        f = open("customerQueue.txt","w")
+                        for id in queue:
+                            f.write(id+" ")
+                        break
+                except:
+                    print("Customer not found")
         else:
             print(f'Orders Already assigned to {self}')
 
-        f.close()
 
     def save(self, *args, **kwargs):
         self.assignFromQueue()
