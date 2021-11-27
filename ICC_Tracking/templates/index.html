@@ -92,6 +92,31 @@
                     <button id="confirm">Order Recieved</button>
                 </div>
             </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div id = "feedback-form">
+
+                    <form method="POST">
+
+                        {% csrf_token %}
+
+                        Your Name: <br>
+                        <input type="text" name="realname" id = "realname" placeholder="Enter your name"<br>
+                        <br>
+                        <br>
+                        Your Email: <br>
+                        <input type="text" name="email" id = "email" placeholder="Enter your email"><br>
+                        <br>
+
+                        Your Comments: <br>
+                        <textarea id = "comments" name="comments" rows="15" cols="50" placeholder="Enter your feedback"></textarea><br><br>
+                        
+                        <input id = "fbtn" type="submit" value="Submit">
+                         
+                        </form>
+                </div>
         </div>
     </section>
 </body>

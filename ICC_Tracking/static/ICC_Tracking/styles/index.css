@@ -156,3 +156,47 @@ table, td, th {
         font-size: 3em;
     }
 }
+
+#feedback-form{
+
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#realname , #email {
+padding-top: 5px;
+padding-bottom: 5px;
+padding-right: 261px;
+border: none;
+border-radius: 2px;
+
+}
+
+#fbtn{
+
+    background-color: #1e3c72;
+    border: none;
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    margin: 0px 0px;
+    padding: 10px;
+    font-size: 20px;
+    float:right;
+}
+
+#fbtn:hover {
+
+    background-color: #0008e7;
+    cursor: pointer;
+
+}
+
+h4 {
+    padding-top:2px;
+    padding:0px;
+    margin:0px;
+
+}
+
