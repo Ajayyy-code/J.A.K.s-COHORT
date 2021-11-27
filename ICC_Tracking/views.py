@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 
+from ICC_Tracking.models import Bearer
+
 # Create your views here.
 # request -> response
 # Each view needs to be mapped to a url
@@ -17,7 +19,8 @@ def index(request):
 #Inventory Page
 @staff_member_required()
 def inventory(request):
-    return render(request, 'inventory.html')
+    bearers = Bearer.objects.all()
+    return render(request, 'inventory.html', {'bearers':bearers})
 
 #Admin Page
 @staff_member_required()
