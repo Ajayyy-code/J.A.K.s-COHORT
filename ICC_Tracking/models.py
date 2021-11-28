@@ -4,6 +4,7 @@ from ICC_Tracking.scripts import constants
 
 # Create your models here.
 class Customer(models.Model):
+    
     ID = models.AutoField(primary_key=True)
     orderID = models.CharField(max_length=30, blank=True)
     fname = models.CharField(max_length=50)

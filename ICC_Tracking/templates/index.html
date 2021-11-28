@@ -18,9 +18,12 @@
 
             <div class="text">
                 <h3> Track Your Order </h3>
-                <form class="inputForm" action="" method="post" onclick="return false">
-                    <input type="text" name="Text" value="" id="tInput" placeholder="Enter Order #">
-                    <input type="submit" name="Submit" value="Search" id="sBtn">
+                <form class="inputForm" action="" method="post">
+
+                    {% csrf_token %}
+
+                    <input type="text" name="tInput" id="tInput" placeholder="Enter Order #">
+                    <input type="submit" name="sBtn" value="Search" id="sBtn">
                 </form>
             </form>
 
@@ -41,43 +44,43 @@
                             <td>
                                 <table>
                                     <tr>
-                                        <td>First Name</td>
+                                        <td>First Name: {{customer.fname}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Last Name</td>
+                                        <td>Last Name: {{customer.lname}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Company</td>
+                                        <td>Company: {{customer.company}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Address</td>
+                                        <td>Address: {{customer.address}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
                                     <!--Optional Address Info-->
-                                        <td>Apartment suite, etc. (optional)</td>
+                                        <td>Apartment suite, etc.(optional): {{customer.optionalAddressInfo}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>City</td>
+                                        <td>City: {{customer.city}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Country/region</td>
+                                        <td>Country/Region: {{customer.country}}</td>
                                         <td></td>
                                     </tr>
                                     <tr>
-                                        <td>Phone</td>
+                                        <td>Phone: {{customer.contactNumber}}</td>
                                         <td></td>
                                     </tr>
                                 </table>
                             </td>
                         </tr>
                         <tr>
-                            <td>Subtotal</td>
+                            <td>Subtotal: {{customer.subtotal}}</td>
                             <td></td>
                         </tr>
                     </tbody>
@@ -107,13 +110,13 @@
                         <br>
                         <br>
                         Your Email: <br>
-                        <input type="text" name="email" id = "email" placeholder="Enter your email"><br>
+                        <input type="email" name="email" id = "email" placeholder="Enter your email"><br>
                         <br>
 
                         Your Comments: <br>
                         <textarea id = "comments" name="comments" rows="15" cols="50" placeholder="Enter your feedback"></textarea><br><br>
                         
-                        <input id = "fbtn" type="submit" value="Submit">
+                        <input id = "fBtn" name = "fBtn" type="submit" value="Submit">
                          
                         </form>
                 </div>

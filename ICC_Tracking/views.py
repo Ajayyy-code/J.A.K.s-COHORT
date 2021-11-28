@@ -17,18 +17,38 @@ from ICC_Tracking.models import Bearer, Customer
 def index(request):
     # Checks if there is a post request on the webpage, and collects the name of the person,email and feedback they have written
     if request.method == "POST":
-        message_name =  request.POST['realname']
-        message_email = request.POST['email']
-        message = request.POST['comments']
 
-        #Sends email with feedback to the owner/business
-        send_mail( 'Feedback from '+ message_name,message + '\n Customer email: ' + message_email, message_email,['icecc.feedback@gmail.com'])
-        #Sends confirmation email to the customer
-        send_mail('Feedback received', 'Thank you for the feedback','icecc.feedback@gmail.com', [message_email])
+        if 'fBtn' in request.POST:
 
-        return render(request,'index.html',{'message_name':message_name})
-    else:
-        return render(request, 'index.html')
+            message_name =  request.POST['realname']
+            message_email = request.POST['email']
+            message = request.POST['comments']
+
+            if message_name != "" or message_email != "" or message != "":
+
+                #Sends email with feedback to the owner/business
+                send_mail( 'Feedback from '+ message_name,message + '\n Customer email: ' + message_email, message_email,['icecc.feedback@gmail.com'])
+                #Sends confirmation email to the customer
+                send_mail('Feedback received', 'Thank you for the feedback','icecc.feedback@gmail.com', [message_email])
+
+                return render(request,'index.html',{'message_name':message_name})
+            else:
+                return render(request, 'index.html')
+
+        elif 'sBtn' in request.POST:
+
+            orderID = request.POST['tInput']
+            customers = Customer.objects.all()
+
+            for customer in customers:
+                if customer.orderID == orderID:
+                    return render(request,'index.html',{"customer": customer})
+            
+            return render(request,'index.html')
+
+    return render(request,'index.html')
+
+    
 
 
 
