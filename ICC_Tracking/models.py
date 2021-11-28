@@ -23,7 +23,10 @@ class Customer(models.Model):
     subtotal = models.FloatField(blank=True, null=True)
     orderStatus = models.IntegerField(choices=constants.O_STATUS_CHOICES, default=1)
 
+    timeCreated = models.TimeField(auto_now_add=True)
+
     #Methods
+    #Method to automatically assign customer to bearers or add them to the queue
     def assignBearerToCustomer(self):
         isset = False
         #Checking if bearer is already assigned
@@ -68,6 +71,19 @@ class Customer(models.Model):
         self.time = self.area
         self.assignBearerToCustomer()
         super(Customer, self).save(*args, **kwargs)
+
+    #Overriding default delete function
+    def delete(self, *args, **kwargs):
+        print("Deleting")
+        bearers = Bearer.objects.all()
+        for bearer in bearers:
+            if bearer.assignedOrders:
+                print("Bearer has an order assigned")
+                if bearer.assignedOrders.rstrip().lstrip() == self.orderID.rstrip().lstrip():
+                    print("Matching Order ID detected")
+                    bearer.assignedOrders = ""
+                    bearer.save()
+        return super(Customer, self).delete(*args, **kwargs)
 
     def __str__(self):
         return f'{self.fname} {self.lname}'

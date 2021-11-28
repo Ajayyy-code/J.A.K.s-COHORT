@@ -49,7 +49,11 @@ def index(request):
                     except IndexError:
                         bearer = None
                         area = None
-                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area})
+
+                    #Calculating Time
+                    eta = 1
+
+                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "eta":eta})
             
             return render(request,'index.html')
 
