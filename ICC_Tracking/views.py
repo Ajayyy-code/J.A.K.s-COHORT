@@ -51,7 +51,7 @@ def index(request):
                         area = None
 
                     #Calculating Time
-                    eta = 1
+                    eta = customer.timeCreated
 
                     return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "eta":eta})
             
