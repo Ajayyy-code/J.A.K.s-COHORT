@@ -43,8 +43,9 @@
             <div class="current-bearers">
                 <h3>Active Bearers</h3>
                 <ul>
-                    <li>Example Bearer <button>+</button></li>
-                    <li>Example Bearer <button>+</button></li>
+                    {%for bearer in bearers%}
+                        <li>{{ bearer.name }}</li>
+                    {% endfor %}
                 </ul>
             </div>
         </section>
