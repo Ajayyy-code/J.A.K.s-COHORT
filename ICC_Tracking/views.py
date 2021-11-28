@@ -52,9 +52,9 @@ def index(request):
                         area = None
 
                     #Calculating Time
-                    eta = customer.timeCreated
+                    orderp = customer.timeCreated
 
-                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "eta":eta, "time":time})
+                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "orderp":orderp, "time":time})
             
             return render(request,'index.html')
 
