@@ -22,22 +22,11 @@
                 <h3>Active Orders</h3>
                 <ul>
                     <!--Example Expanded Info-->
-                    <li>Example Order <button>-</button> 
-                        <div>
-                            <table>
-                                <tr>
-                                    <td>Test Info</td>
-                                    <td>Test Content</td>
-                                </tr>
-                                <tr>
-                                    <td>Test Info</td>
-                                    <td>Test Content</td>
-                                </tr>
-                            </table>
-                        </div>
-                    </li>
-                    <li>Example Order <button>+</button></li>
-                    <li>Example Order <button>+</button></li>
+                    {%for bearer in bearers%}
+                    <li>Example Order</li>
+                    <li>Example Order</li>
+                    <li>Example Order</li>
+                    {% endfor %}
                 </ul>
             </div>
             <div class="current-bearers">

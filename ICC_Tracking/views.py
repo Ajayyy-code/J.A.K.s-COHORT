@@ -46,6 +46,7 @@ def index(request):
                     try:
                         bearer = Bearer.objects.all().filter(ID=customer.assignedBearer)[0]
                         area = constants.List_LOCATIONS[customer.area-1]
+                        time = constants.List_TIME[customer.time-1]
                     except IndexError:
                         bearer = None
                         area = None
@@ -53,7 +54,7 @@ def index(request):
                     #Calculating Time
                     eta = customer.timeCreated
 
-                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "eta":eta})
+                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "eta":eta, "time":time})
             
             return render(request,'index.html')
 
@@ -74,5 +75,7 @@ def inventory(request):
 #Admin Page
 @staff_member_required()
 def admin(request):
-    return render(request, 'admin.html')
+    bearers = Bearer.objects.all()
+    customers = Customer.objects.all()
+    return render(request, 'admin.html', {"bearers":bearers, "customers":customers})
 
