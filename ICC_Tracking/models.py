@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models.enums import Choices
 from ICC_Tracking.scripts import constants
 
 # Create your models here.
@@ -9,6 +10,8 @@ class Customer(models.Model):
     lname = models.CharField(max_length=50)
     company = models.CharField(max_length=50, default="N/A")
     address = models.CharField(max_length=50)
+    area = models.IntegerField(choices=constants.LOCATIONS, default=1)
+    time = models.IntegerField(choices=constants.TIME, default=1)
     optionalAddressInfo = models.CharField(max_length=50, default="N/A")
     city = models.CharField(max_length=50, default="Portmore")
     country = models.CharField(max_length=50, default="Jamaica")
@@ -61,6 +64,7 @@ class Customer(models.Model):
 
     #Overriding default save function to automatically assign a bearer to a customer when a customer is created
     def save(self, *args, **kwargs):
+        self.time = self.area
         self.assignBearerToCustomer()
         super(Customer, self).save(*args, **kwargs)
 

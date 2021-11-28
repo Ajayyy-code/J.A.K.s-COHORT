@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mail
 
-from ICC_Tracking.models import Bearer
+from ICC_Tracking.models import Bearer, Customer
 
 # Create your views here.
 # request -> response
@@ -15,7 +15,6 @@ from ICC_Tracking.models import Bearer
 
 #Landing Page
 def index(request):
-
     # Checks if there is a post request on the webpage, and collects the name of the person,email and feedback they have written
     if request.method == "POST":
         message_name =  request.POST['realname']
