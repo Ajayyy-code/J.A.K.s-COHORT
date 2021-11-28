@@ -77,5 +77,64 @@ def inventory(request):
 def admin(request):
     bearers = Bearer.objects.all()
     customers = Customer.objects.all()
+
+    if request.method == "POST":
+
+        bearerName = request.POST['bearer-input']
+        foundBearer = False
+
+        for bearer in bearers:
+            if bearerName.rstrip().lstrip() == bearer.name.rstrip().lstrip():
+                print("Bearer Detected")
+                if 'delete-bearer' in request.POST:
+                    print("Deleting Bearer")
+                    print(bearerName)
+                    bearer.delete()
+
+                #Reset bearer takes out the order ID from the bearer
+                #Then the customer is added back to the assignment queue and saved
+                if 'reset-bearer' in request.POST:
+                    print("Reseting Bearer")
+                    print(bearerName)
+                    try:
+                        assignedCustomer = customers.filter(assignedBearer=bearer.ID)[0]
+                        if assignedCustomer:
+                            assignedCustomer.assignedBearer = -1
+                            assignedCustomer.save()
+                    except IndexError:
+                        print("Assigned Customer Not Found")
+                    bearer.assignedOrders = ""
+                    bearer.save()
+
+                #Marking a bearer as complete deletes the customer object and resets the order
+                if 'mark-bearer' in request.POST:
+                    print("Completing Delivery")
+                    print(bearerName)
+                    try:
+                        assignedCustomer = customers.filter(assignedBearer=bearer.ID)[0]
+                        if assignedCustomer:
+                            assignedCustomer.delete()
+                    except IndexError:
+                        print("Assigned Customer Not Found")
+                    bearer.assignedOrders = ""
+                    bearer.save()
+
+                foundBearer = True
+                break
+            else:
+                print("Bearer not detected")
+
+        if not foundBearer:
+            if 'set-bearer' in request.POST:
+                print("Setting Bearer")
+                print(bearerName)
+                Bearer.objects.create(name=bearerName)
+        else:
+            print("Bearer Found")
+
+
+    bearers = Bearer.objects.all()
+    customers = Customer.objects.all()
+
     return render(request, 'admin.html', {"bearers":bearers, "customers":customers})
 
