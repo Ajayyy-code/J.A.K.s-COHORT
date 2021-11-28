@@ -41,7 +41,7 @@ class Customer(models.Model):
                     self.assignedBearer = bearer.ID
                     orders = bearer.assignedOrders
                     print(orders)
-                    bearer.assignedOrders = str(orders) + str(self.orderID)
+                    bearer.assignedOrders = str(self.orderID)
                     bearer.save()
                     isset = True
                     break
@@ -98,6 +98,17 @@ class Bearer(models.Model):
 
     #Methods
     def assignFromQueue(self):
+
+        #Adding Unqueued Customers
+        customers = Customer.objects.all()
+        for customer in customers:
+            if customer.assignedBearer == -1:
+                f = open("customerQueue.txt","a+")
+                f.seek(0,2)
+                f.write(f'{customer.orderID} ')
+                f.close()
+
+        #Reading Queue File
         print("Reading Queue")
         f = open("customerQueue.txt","a+")
         f.seek(0)
@@ -129,6 +140,19 @@ class Bearer(models.Model):
     def save(self, *args, **kwargs):
         self.assignFromQueue()
         super(Bearer, self).save(*args, **kwargs)
+
+    #Overriding default delete function
+    def delete(self, *args, **kwargs):
+        print("Deleting")
+        customers = Customer.objects.all()
+        for customer in customers:
+            if customer.orderID:
+                print("Customer has an order assigned")
+                if customer.orderID.rstrip().lstrip() == self.assignedOrders.rstrip().lstrip():
+                    print("Matching Order ID detected")
+                    customer.assignedBearer = -1
+                    customer.save()
+        return super(Bearer, self).delete(*args, **kwargs)
 
     def __str__(self):
         return f'{self.name}'

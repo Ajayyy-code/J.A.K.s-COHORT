@@ -22,18 +22,33 @@
                 <h3>Active Orders</h3>
                 <ul>
                     <!--Example Expanded Info-->
-                    {%for bearer in bearers%}
-                    <li>Example Order</li>
-                    <li>Example Order</li>
-                    <li>Example Order</li>
+                    {%for customer in customers%}
+                        {% if not customer.assignedBearer == -1 %}
+                        <li>
+                            {{customer.ID}}) {{customer.orderID}}
+                        </li>
+                        {% endif %}
                     {% endfor %}
                 </ul>
+
+                <h3>Queued Orders</h3>
+                <ul>
+                    <!--Example Expanded Info-->
+                    {%for customer in customers%}
+                        {% if customer.assignedBearer == -1 %}
+                        <li>
+                            {{customer.ID}}) {{customer.orderID}}
+                        </li>
+                        {% endif %}
+                    {% endfor %}
+                </ul>
+
             </div>
             <div class="current-bearers">
                 <h3>Active Bearers</h3>
                 <ul>
                     {%for bearer in bearers%}
-                        <li>{{ bearer.name }}</li>
+                        <li>Name : [{{ bearer.name }}] Order : [{{bearer.assignedOrders}}]</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -42,11 +57,18 @@
         <section class="admin-tools">
             <div class="checkin-bearer">
             <form method="post">
-                
-                <input id="bearer-input" type="text" name="bearer-input" placeholder="Enter Bearer name" />
-				<div id="controls">
+                {% csrf_token %}
+                <datalist id="bearerNames">
+                    {%for bearer in bearers%}
+                        <option value="{{bearer.name}}"/>
+                    {% endfor %}
+                </datalist>
+                <input list="bearerNames" id="bearer-input" type="text" name="bearer-input" placeholder="Enter Bearer name" />
+                <div id="controls">
 					<button name="set-bearer" type = "submit">Set Bearer</button>
+                    <button name ="mark-bearer" type = "submit">Mark Bearer as Delievered</button>
                     <button name ="delete-bearer" type = "submit">Delete Bearer</button>
+                    <button name ="reset-bearer" type = "submit">Reset Bearer</button>
 				</div>
             </div>
         </section>
@@ -54,12 +76,6 @@
         <section class="admin-log">
             <div class="log-result">
                 <ul>
-                    <li>Log example</li>
-                    <li>Log example</li>
-                    <li>Log example</li>
-                    <li>Log example</li>
-                    <li>Log example</li>
-                    <li>Log example</li>
                 </ul>
             </div>
         </section>
