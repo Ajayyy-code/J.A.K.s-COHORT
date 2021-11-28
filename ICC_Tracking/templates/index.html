@@ -8,16 +8,15 @@
 <body>
     <!-- CUSTOMER PAGE -->
     <section class="showcase">
-        <header>
-            <img src="{% static 'ICC_Tracking/media/images/ICC_Logo.png' %}">
-            <h1>Ice Cream Conenexion Tracking</h1>
-        </header>
+
 
         <video src="{% static 'ICC_Tracking/media/videos/genericVid.mp4' %}" muted loop autoplay></video>
 
         <div class="overlay"></div>
 
             <div class="text">
+                <img src="{% static 'ICC_Tracking/media/images/ICC_Logo.png' %}">
+                <h1>Ice Cream Conenexion Tracking</h1>
                 <h3> Track Your Order </h3>
                 <form class="inputForm" action="" method="post">
 
@@ -42,7 +41,7 @@
                         </tr>
                         <tr>
                             <td>Area</td>
-                            <td>{{customer.area}}</td>
+                            <td>{{area}}</td>
                         </tr>
                         <tr>
                             <td>Assigned Bearer</td>

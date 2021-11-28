@@ -34,6 +34,32 @@ LOCATIONS = (
     (23, "Hellshire")
 )
 
+List_LOCATIONS = [
+    "PortmorePines",
+    "Caribbean Estate",
+    "Monza Daytona",
+    "Portmore Country Club1",
+    "Braeton",
+    "Bridgeport",
+    "Bridgeview",
+    "Edgewater",
+    "Greater Portmore",
+    "Gregory Park",
+    "Independence City, Cedar Grove, Cumberland, Christian Gardens",
+    "Naggo Head",
+    "Newland,South Borough",
+    "Passage Fort, Weschester, Westmeade, Garveymeade",
+    "Port Henderson",
+    "Portmore Country Club 2",
+    "Waterford",
+    "Waterford Boston",
+    "Waterford Gaza",
+    "Waterford Saltpond",
+    "Caymanas Golf & Country Club",
+    "Phoenix Park Village",
+    "Hellshire"
+]
+
 TIME = (
     (1, '180'),
     (2, '360'),
@@ -59,3 +85,29 @@ TIME = (
     (22, "600"),
     (23, "2340"),
 )
+
+List_TIME = [
+    '180',
+    '360',
+    '300',
+    '300',
+    '600',
+    '360',
+    '480',
+    '480',
+    '480',
+    '960',
+    '780',
+    '300',
+    '300',
+    '600',
+    '300',
+    '180',
+    '900',
+    '900',
+    '900',
+    '900',
+    '1080',
+    '600',
+    '2340'
+]

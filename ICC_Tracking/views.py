@@ -3,6 +3,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.core.mail import send_mail
 
 from ICC_Tracking.models import Bearer, Customer
+from ICC_Tracking.scripts import constants
 
 # Create your views here.
 # request -> response
@@ -44,9 +45,11 @@ def index(request):
                 if customer.orderID == orderID:
                     try:
                         bearer = Bearer.objects.all().filter(ID=customer.assignedBearer)[0]
+                        area = constants.List_LOCATIONS[customer.area-1]
                     except IndexError:
                         bearer = None
-                    return render(request,'index.html',{"customer": customer, "bearer":bearer})
+                        area = None
+                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area})
             
             return render(request,'index.html')
 
