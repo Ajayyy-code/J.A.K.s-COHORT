@@ -1,17 +1,16 @@
 window.onload = function(){
 
-    let orderp = document.getElementById("orderp").firstChild.nodeValue;
-    console.log(orderp);
-    let eta = document.getElementById("eta").firstChild.nodeValue;
-    let timestuff;
-    let totaletaH;
-    let totaletaM;
-    let totaleta;
-
-    console.log(eta);
+    let orderp = document.getElementById("orderp").firstChild.nodeValue;    //Grabs the time the order was placed
+    let eta = document.getElementById("eta").firstChild.nodeValue;      //Grabs the estimated time of the order
+    let timestuff; //AM or PM value
+    let totaletaH; //New estimated time hours
+    let totaletaM; //New estimated time Minutes
+    let totaleta; // New estimated time in Seconds
 
     
 
+    
+    //Changes estimated time to integer
     inteta = parseInt(eta);
 
     let orderptime = orderp;
@@ -39,7 +38,7 @@ window.onload = function(){
         orderptime.push('0');
         
     }
-    //If time goes from AM to PM
+    //If the time goes from AM to PM
     if (orderptime[0] == 11 && orderptime[1] + (inteta / 60) > 60 && timestuff.includes("a.m.")){
 
         
@@ -49,7 +48,7 @@ window.onload = function(){
 
 
     }
-    //If time goes from PM to AM
+    //If the time goes from PM to AM
     else if (orderptime[0] == 11 && orderptime[1] + (inteta / 60) > 60 && timestuff.includes("p.m.")){
 
         timestuff = ("a.m.");
@@ -57,31 +56,14 @@ window.onload = function(){
     }
 
 
+  
 
-    if (orderptime[0] == 11 && orderptime[1] + (inteta / 60) > 60 && timestuff.includes("a.m.")){
-
-
-        timestuff = ("p.m.");
-
-
-
-
-    }
-
-    else if (orderptime[0] == 11 && orderptime[1] + (inteta / 60) > 60 && timestuff.includes("p.m.")){
-
-        timestuff = ("a.m.");
-        
-    }
-
-    console.log(orderptime,inteta);
-
-
+    //Changes the time the order was placed into seconds
     secorderp = (((orderptime[0] * 60) * 60) + (orderptime[1] * 60));
-
+    //The new time in seconds
     totaleta = secorderp + inteta;
 
-    console.log(totaleta);
+   
 
     
     if (totaleta % 60 == 0){
@@ -103,7 +85,7 @@ window.onload = function(){
     else {
 
         totaleta = Math.trunc(totaleta / 60);
-
+        //If time goes from 12 to 1
         if ((Math.trunc(totaleta / 60)) > 12 ){
             totaletaH = (Math.trunc(totaleta / 60) - 12);
         }
@@ -115,19 +97,19 @@ window.onload = function(){
 
     }
 
-    console.log(totaletaH,totaletaM);
+    
 
 
-    let strtotalH = totaletaH.toString();
+    let strtotalH = totaletaH.toString(); 
     let strtotalM = totaletaM.toString();
 
     if (strtotalM.length < 2 ){
 
         strtotalM = "0" + strtotalM; 
     }
-
+    //Creates the new time in Hours and minutes
     let neweta = (strtotalH + ":" + strtotalM + " " + timestuff);
-
-    console.log(document.getElementById("eta").innerHTML = (neweta));
+    //Appends the new time to the landing page
+    document.getElementById("eta").innerHTML = (neweta);
 
 }
