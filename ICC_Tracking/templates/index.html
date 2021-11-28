@@ -27,99 +27,58 @@
                 </form>
             </form>
 
-            <div class="orderInfo">
+            {% if customer.ID %}
+            <div class="orderInfo" style="display: flex">
+            {% else %}
+            <div class="orderInfo" style="display: none">
+            {% endif %}
                 <h4>Order Information</h4>
                 <table>
                     <tbody>
                         <tr>
-                            <td>Contact Information</td>
-                            <td></td>
+                            <td>Name</td>
+                            <td>{{customer.fname}} {{customer.lname}}</td>
                         </tr>
                         <tr>
-                            <td>Delivery Method</td>
-                            <td></td>
+                            <td>Area</td>
+                            <td>{{customer.area}}</td>
                         </tr>
                         <tr>
-                            <td>Delivery Address</td>
-                            <td>
-                                <table>
-                                    <tr>
-                                        <td>First Name: {{customer.fname}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Last Name: {{customer.lname}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Company: {{customer.company}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Address: {{customer.address}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                    <!--Optional Address Info-->
-                                        <td>Apartment suite, etc.(optional): {{customer.optionalAddressInfo}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>City: {{customer.city}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Country/Region: {{customer.country}}</td>
-                                        <td></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Phone: {{customer.contactNumber}}</td>
-                                        <td></td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                            <td>Assigned Bearer</td>
+                            <td>{{bearer.name}}</td>
+                        </tr>      
                         <tr>
-                            <td>Subtotal: {{customer.subtotal}}</td>
-                            <td></td>
-                        </tr>
+                            <td>Subtotal</td>
+                            <td>{{customer.subtotal}}</td>
+                        </tr>                  
                     </tbody>
                 </table>
-                <div class="bearer-info">
-
-                </div>
-                <div class="cancel-order">
-                    <button id="cancel">Cancel Order</button>
-                </div>
-                <div class="confirm-order">
-                    <button id="confirm">Order Recieved</button>
-                </div>
             </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <div id = "feedback-form">
+            {% if customer.ID %}
+            <div id = "feedback-form" style="display: flex">
+            {% else %}
+            <div id = "feedback-form" style="display: none">
+            {% endif %}
 
-                    <form method="POST">
+                <form method="POST">
+                    <h1>Feedback</h1>
+                    {% csrf_token %}
 
-                        {% csrf_token %}
+                    Your Name: <br>
+                    <input type="text" name="realname" id = "realname" placeholder="Enter your name"<br>
+                    <br>
+                    <br>
+                    Your Email: <br>
+                    <input type="email" name="email" id = "email" placeholder="Enter your email"><br>
+                    <br>
 
-                        Your Name: <br>
-                        <input type="text" name="realname" id = "realname" placeholder="Enter your name"<br>
-                        <br>
-                        <br>
-                        Your Email: <br>
-                        <input type="email" name="email" id = "email" placeholder="Enter your email"><br>
-                        <br>
-
-                        Your Comments: <br>
-                        <textarea id = "comments" name="comments" rows="15" cols="50" placeholder="Enter your feedback"></textarea><br><br>
+                    Your Comments: <br>
+                    <textarea id = "comments" name="comments" rows="15" cols="50" placeholder="Enter your feedback"></textarea><br><br>
                         
-                        <input id = "fBtn" name = "fBtn" type="submit" value="Submit">
+                    <input id = "fBtn" name = "fBtn" type="submit" value="Submit">
                          
-                        </form>
-                </div>
+                </form>
+            </div>
         </div>
     </section>
 </body>

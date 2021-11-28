@@ -42,7 +42,11 @@ def index(request):
 
             for customer in customers:
                 if customer.orderID == orderID:
-                    return render(request,'index.html',{"customer": customer})
+                    try:
+                        bearer = Bearer.objects.all().filter(ID=customer.assignedBearer)[0]
+                    except IndexError:
+                        bearer = None
+                    return render(request,'index.html',{"customer": customer, "bearer":bearer})
             
             return render(request,'index.html')
 
