@@ -8,8 +8,10 @@
     padding: 0;
 }
 
-header{
-    margin-bottom: 5%;
+.header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .orderInfo{
