@@ -40,14 +40,15 @@ def index(request):
 
             orderID = request.POST['tInput']
             customers = Customer.objects.all()
-
+            #Loops through customer objects
             for customer in customers:
-                if customer.orderID == orderID:
+                if customer.orderID == orderID:  #Searches for customer based on the orderID given
+                    time = constants.List_TIME[customer.time-1]
                     try:
                         bearer = Bearer.objects.all().filter(ID=customer.assignedBearer)[0]
                         area = constants.List_LOCATIONS[customer.area-1]
                         time = constants.List_TIME[customer.time-1]
-                    except IndexError:
+                    except IndexError:  
                         bearer = None
                         area = None
 
@@ -55,7 +56,7 @@ def index(request):
 
                     orderp = customer.timeCreated
 
-                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "orderp":orderp, "time":time})
+                    return render(request,'index.html',{"customer": customer, "bearer":bearer, "area":area, "orderp":orderp, "time":time}) #Sends the customer information to the landing page
             
             return render(request,'index.html')
 

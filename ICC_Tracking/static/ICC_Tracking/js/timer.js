@@ -1,11 +1,14 @@
 window.onload = function(){
 
+
     let orderp = document.getElementById("orderp").firstChild.nodeValue;    //Grabs the time the order was placed
     let eta = document.getElementById("eta").firstChild.nodeValue;      //Grabs the estimated time of the order
     let timestuff; //AM or PM value
     let totaletaH; //New estimated time hours
     let totaletaM; //New estimated time Minutes
     let totaleta; // New estimated time in Seconds
+    let hr24; //Hours in 24 Hours
+
 
     
 
@@ -112,4 +115,43 @@ window.onload = function(){
     //Appends the new time to the landing page
     document.getElementById("eta").innerHTML = (neweta);
 
+    if (timestuff.includes('p.m')){
+        hr24 = parseInt(orderptime[0]) + 12; //Turn the hours into 24 hour time
+    }
+
+    let Day = new Date().getDate();
+    let Month = new Date().getMonth();
+    let Year = new Date().getFullYear();
+    
+    let downdate = new Date(Year,Month,Day,hr24,orderptime[1]).getTime();
+
+    // Set the date we're counting down to
+    let countDownDate;
+
+
+    countDownDate = (downdate + inteta*1000);
+
+    // Update the count down every 1 second
+    let x = setInterval(function() {
+
+    // Get today's date and time
+    let now = new Date().getTime();
+        
+    // Find the distance between now and the count down date
+    let distance = countDownDate - now;
+        
+    // Time calculations for days, hours, minutes and seconds
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+    // Output the result in an element with id="demo"
+    document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+        
+    // If the count down is over, write some text 
+    if (distance < 0) {
+        clearInterval(x);
+        document.getElementById("timer").innerHTML = "TIME UP";
+    }
+    }, 1000);
+    
 }

@@ -56,8 +56,12 @@
                         </tr> 
                         <tr>
                             <td> Estimated Time to Delievery</td>
-                            <td id = "eta">{{time}}z</td>
+                            <td id = "eta">{{time}}</td>
                         </tr> 
+                        <tr>
+                            <td>Timer</td>
+                            <td id = "timer"><td>
+                        </tr>                  
                         <tr>
                             <td>Subtotal</td>
                             <td>{{customer.subtotal}}</td>
@@ -76,7 +80,7 @@
                     {% csrf_token %}
 
                     Your Name: <br>
-                    <input type="text" name="realname" id = "realname" placeholder="Enter your name"<br>
+                    <input type="text" name="realname" id = "realname" placeholder="Enter your name"><br>
                     <br>
                     <br>
                     Your Email: <br>
