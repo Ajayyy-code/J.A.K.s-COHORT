@@ -119,6 +119,12 @@ window.onload = function(){
         hr24 = parseInt(orderptime[0]) + 12; //Turn the hours into 24 hour time
     }
 
+    
+    if (timestuff.includes('a.m')){
+        hr24 = parseInt(orderptime[0]);
+    }
+
+
     let Day = new Date().getDate();
     let Month = new Date().getMonth();
     let Year = new Date().getFullYear();
