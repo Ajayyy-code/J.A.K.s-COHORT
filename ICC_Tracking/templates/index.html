@@ -25,46 +25,60 @@
 
                     {% csrf_token %}
 
+                    {% if bearer.assignedOrders %}
+                    <input type="text" name="tInput" id="tInput" placeholder="Enter Order #" value="{{customer.orderID}}">
+                    {% else %}
                     <input type="text" name="tInput" id="tInput" placeholder="Enter Order #">
+                    {% endif %}
+                    
                     <input type="submit" name="sBtn" value="Search" id="sBtn">
                 </form>
             </form>
+
+
+            {% if customer.ID %}
+            <div class="orderTimer" style="display: flex">
+            {% else %}
+            <div class="orderTimer" style="display: none">
+            {% endif %}
+                <div class="timer-wrapper">
+                    <h3>Timer</h3>
+                    <p id = "timer"></p>
+                </div>
+            </div>
 
             {% if customer.ID %}
             <div class="orderInfo" style="display: flex">
             {% else %}
             <div class="orderInfo" style="display: none">
             {% endif %}
+
                 <div class="orderWrapper">
-                <h4>Order Information</h4>
+                <h2>Order Information</h4>
                 <table>
                     <tbody>
                         <tr>
-                            <td>Name</td>
+                            <td class="header-data">Name</td>
                             <td>{{customer.fname}} {{customer.lname}}</td>
                         </tr>
                         <tr>
-                            <td>Area</td>
+                            <td class="header-data">Area</td>
                             <td>{{area}}</td>
                         </tr>
                         <tr>
-                            <td>Assigned Bearer</td>
+                            <td class="header-data">Assigned Bearer</td>
                             <td>{{bearer.name}}</td>
                         </tr>      
                         <tr>
-                            <td>Order Placed</td>
+                            <td class="header-data">Order Placed</td>
                             <td id = "orderp">{{orderp}}</td>
                         </tr> 
                         <tr>
-                            <td> Estimated Time to Delievery</td>
+                            <td class="header-data"> Estimated Time to Delievery</td>
                             <td id = "eta">{{time}}</td>
-                        </tr> 
+                        </tr>                 
                         <tr>
-                            <td>Timer</td>
-                            <td id = "timer"><td>
-                        </tr>                  
-                        <tr>
-                            <td>Subtotal</td>
+                            <td class="header-data">Subtotal</td>
                             <td>{{customer.subtotal}}</td>
                         </tr>                  
                     </tbody>
@@ -77,7 +91,8 @@
             <div id = "feedback-form" style="display: none">
             {% endif %}
 
-                <form method="POST" class="feedback-form">
+                <div class="feedback-wrapper">
+                <form method="POST" class="feedback-form-class">
                     <h1>Feedback</h1>
                     {% csrf_token %}
 
@@ -92,6 +107,7 @@
                     <input id = "fBtn" name = "fBtn" type="submit" value="Submit">
                          
                 </form>
+                </div>
             </div>
         </div>
     </section>

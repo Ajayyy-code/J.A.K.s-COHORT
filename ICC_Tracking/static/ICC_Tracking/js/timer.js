@@ -151,7 +151,11 @@ window.onload = function(){
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
     // Output the result in an element with id="demo"
-    document.getElementById("timer").innerHTML = minutes + "m " + seconds + "s ";
+    if(seconds<10){
+        document.getElementById("timer").innerHTML = minutes + " : 0" + seconds;
+    } else {
+        document.getElementById("timer").innerHTML = minutes + " : " + seconds;
+    }
         
     // If the count down is over, write some text 
     if (distance < 0) {
