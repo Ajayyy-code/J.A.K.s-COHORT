@@ -5,3 +5,5 @@ ICC_Sys/__pycache__/wsgi.cpython-39.pyc
 ICC_Sys/__pycache__/urls.cpython-39.pyc
 ICC_Sys/__pycache__/settings.cpython-39.pyc
 db.sqlite3
+customerQueue.txt
+ICC_Sys/__pycache__/settings.cpython-39.pyc
