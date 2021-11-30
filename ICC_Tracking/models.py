@@ -6,11 +6,11 @@ from ICC_Tracking.scripts import constants
 class Customer(models.Model):
     
     ID = models.AutoField(primary_key=True)
-    orderID = models.CharField(max_length=30, blank=True)
-    fname = models.CharField(max_length=50)
-    lname = models.CharField(max_length=50)
+    orderID = models.CharField(max_length=30, blank=True, unique=True)
+    fname = models.CharField(max_length=50, default="Test")
+    lname = models.CharField(max_length=50, default="Name")
     company = models.CharField(max_length=50, default="N/A")
-    address = models.CharField(max_length=50)
+    address = models.CharField(max_length=50, default="Test Address 11")
     area = models.IntegerField(choices=constants.LOCATIONS, default=1)
     time = models.IntegerField(choices=constants.TIME, default=1)
     optionalAddressInfo = models.CharField(max_length=50, default="N/A")
@@ -58,7 +58,6 @@ class Customer(models.Model):
             f.seek(0)
             if self.orderID in f.read().split(" "):
                 print("Already in Queue")
-                self.assignedBearer = -1
             else:
                 print("Enqueueing")
                 self.assignedBearer = -1
@@ -99,14 +98,6 @@ class Bearer(models.Model):
     #Methods
     def assignFromQueue(self):
 
-        #Adding Unqueued Customers
-        customers = Customer.objects.all()
-        for customer in customers:
-            if customer.assignedBearer == -1:
-                f = open("customerQueue.txt","a+")
-                f.seek(0,2)
-                f.write(f'{customer.orderID} ')
-                f.close()
 
         #Reading Queue File
         print("Reading Queue")
@@ -114,6 +105,16 @@ class Bearer(models.Model):
         f.seek(0)
         queue = f.read().split(" ")
         print(queue)
+        #Adding Unqueued Customers
+        customers = Customer.objects.all()
+        for customer in customers:
+            if customer.assignedBearer == -1 or customer.assignedBearer == None:
+                print("No Duplicates Detected, Enqueing")
+                f.seek(0,2)
+                customer.assignedBearer == -1
+                customer.save()
+                f.write(f'{customer.orderID} ')
+
         f.close()
 
         if self.assignedOrders=="" or self.assignedOrders is None:
@@ -122,23 +123,36 @@ class Bearer(models.Model):
             for customer in queue:
                 indx += 1
                 try:
-                    customerObj = Customer.objects.get(orderID=customer)
+                    customerObj = Customer.objects.get(orderID=customer.rstrip().lstrip())
                     print(customerObj)
                     if customerObj is not None:
-                        self.assignedOrders += customerObj.orderID+" "
+                        self.assignedOrders += customerObj.orderID
+                        customerObj.assignedBearer = self.ID
+                        print("Updating Customer")
+                        customerObj.save()
                         queue.pop(indx)
                         f = open("customerQueue.txt","w")
                         for id in queue:
                             f.write(id+" ")
                         break
-                except:
+                except Exception as e:
+                    print("Error", e)
                     print("Customer not found")
         else:
             print(f'Orders Already assigned to {self}')
 
+    def checkForEmptyOrders(self):
+        try:
+            customer = Customer.objects.all().filter(assignedBearer=self.ID)[0]
+            if customer:
+                print("Matching Customer Found")
+                self.assignedOrders = customer.orderID
+        except Exception as e:
+            print("Error in assignment", e)
 
     def save(self, *args, **kwargs):
         self.assignFromQueue()
+        self.checkForEmptyOrders()
         super(Bearer, self).save(*args, **kwargs)
 
     #Overriding default delete function
