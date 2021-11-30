@@ -43,11 +43,11 @@ def index(request):
             #Loops through customer objects
             for customer in customers:
                 if customer.orderID == orderID:  #Searches for customer based on the orderID given
-                    time = constants.List_TIME[customer.time-1]
+                    time = int(constants.List_TIME[customer.time-1]) + 600
                     try:
                         bearer = Bearer.objects.all().filter(ID=customer.assignedBearer)[0]
                         area = constants.List_LOCATIONS[customer.area-1]
-                        time = constants.List_TIME[customer.time-1]
+                        time = int(constants.List_TIME[customer.time-1]) + 600
                     except IndexError:  
                         bearer = None
                         area = None

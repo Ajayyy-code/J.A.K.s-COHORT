@@ -1,7 +1,7 @@
 __pycache__
 migrations
-db.sqlite3
 ICC_Tracking/migrations/__pycache__/__init__.cpython-39.pyc
 ICC_Sys/__pycache__/wsgi.cpython-39.pyc
 ICC_Sys/__pycache__/urls.cpython-39.pyc
 ICC_Sys/__pycache__/settings.cpython-39.pyc
+db.sqlite3
