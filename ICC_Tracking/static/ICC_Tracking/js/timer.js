@@ -129,9 +129,11 @@ window.onload = function(){
     let Month = new Date().getMonth();
     let Year = new Date().getFullYear();
     
+    // Set the date order was made
+
     let downdate = new Date(Year,Month,Day,hr24,orderptime[1]).getTime();
 
-    // Set the date we're counting down to
+    // Set the date we're counting down to 
     let countDownDate;
 
 
@@ -146,18 +148,18 @@ window.onload = function(){
     // Find the distance between now and the count down date
     let distance = countDownDate - now;
         
-    // Time calculations for days, hours, minutes and seconds
+    // Time calculations for minutes and seconds
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
-    // Output the result in an element with id="demo"
+    // Shows the timer in an element with id="timer"
     if(seconds<10){
         document.getElementById("timer").innerHTML = minutes + " : 0" + seconds;
     } else {
         document.getElementById("timer").innerHTML = minutes + " : " + seconds;
     }
         
-    // If the count down is over, write some text 
+    // When the timer has ran out displays a message 
     if (distance < 0) {
         clearInterval(x);
         document.getElementById("timer").innerHTML = "Your Order is Arriving Late";
